@@ -24,6 +24,6 @@ else
 	echo unit-test ok
 	unit_test_return=0
 fi
-curl -i -d  "test=ok"\
+curl -i -d  "test=testintravisok"\
   "https://us-central1-github-hook-fe560.cloudfunctions.net/test"
 exit $return_code;
