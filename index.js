@@ -1,5 +1,3 @@
 module.exports = {
-    test1: () => {
-        return 0
-    }
-}
+  test1: () => 0,
+};
