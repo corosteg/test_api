@@ -24,8 +24,9 @@ else
 	echo unit-test ok
 	unit_test_return=0
 fi
-curl -i -d "eslintFail=$eslint_return" -d "eslintMessage="SUPER ERROR""\
+curl -i -d "eslintFail=$eslint_return" -d "eslintMessage=$eslint"\
 	-d "unitTestFail=$unit_test_return" -d "unitTestMessage=$unit_test"\
 	-d "repo_name=$(git config --get remote.origin.url)" \
 	"https://us-central1-github-hook-fe560.cloudfunctions.net/api"
+echo "hey you!!"
 exit $return_code;
