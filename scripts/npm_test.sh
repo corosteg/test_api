@@ -24,8 +24,8 @@ else
 	echo unit-test ok
 	unit_test_return=0
 fi
-curl -i -d "eslintFail='$eslint_return'" -d "eslintMessage='$eslint'" \
-	-d "unitTestFail='$unit_test_return'" -d "unitTestMessage='$unit_test'" \
-	-d "repo_name='$(git config --get remote.origin.url)'" \
+curl -i -d "eslintFail=$eslint_return" -d "eslintMessage=$eslint"\
+	-d "unitTestFail=$unit_test_return" -d "unitTestMessage=$unit_test"\
+	-d "repo_name=$(git config --get remote.origin.url)" \
 	"https://us-central1-github-hook-fe560.cloudfunctions.net/api"
 exit $return_code;
