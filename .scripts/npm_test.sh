@@ -31,6 +31,8 @@ else
 fi
 echo $eslint > eslint.json
 echo $unit_test > unitTest.json
+cat unitTest.json
+cat eslint.json
 #quote=$(echo \") 
 #git=$(git config --get remote.origin.url)
 #git_url="${quote}${git}${quote}"
