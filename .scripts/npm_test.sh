@@ -29,23 +29,17 @@ else
 	echo unit-test ok
 	unit_test_return=0
 fi
-echo $eslint > eslint.json
-echo $unit_test > unitTest.json
-cat unitTest.json
-cat eslint.json
-#quote=$(echo \") 
-#git=$(git config --get remote.origin.url)
-#git_url="${quote}${git}${quote}"
-#response="${eslint}"
-#echo $response
-#unit_test_final=
-#echo $git_url
-#echo ${unit_test}
-#echo '{"link": '$git_url'}'
-#echo '{"link":'$git_url',"response":{"eslintFail":"'$eslint_return'","eslintMessage":'$eslint', "unitTest":'$unit_test'}'
-#echo '{"link":'$git_url',"response":'$eslint'}' 
-#curl -i -H "Accept: application/json" \
-#	-H "Content-Type:application/json"  \
-#	--data-urlencode '{"link":'$git_url',"response":'$eslint'}' \
-#	"https://us-central1-github-hook-fe560.cloudfunctions.net/api2"
+if [ -e ./tmp ]
+then
+	echo 'tmp exist'
+else
+	mkdir ./tmp
+fi
+echo $eslint_return > ./tmp/eslintFail.txt
+echo $eslint > ./tmp/eslintMessage.json
+echo $unit_test_return > ./tmp/unitTestFail.txt
+echo $unit_test > ./tmp/unitTestMessage.json
+echo $(git config --get remote.origin.url) > ./tmp/gitPath.txt
+ls -lRa
+rm -f ./tmp/*
 exit $return_code;
