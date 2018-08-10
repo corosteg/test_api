@@ -2,7 +2,7 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 
 let obj = {
-    link:'',
+    githubLink:'',
     response:{
         eslintMessage:'',
         eslintFail:'',
@@ -47,16 +47,14 @@ let fs5 = new Promise ((resolve) => {fs.readFile('./tmp/unitTestFail.txt', 'utf-
 })});
 
 const sendFilesToDB = (obj) => {
-    console.log(obj.response.eslintMessage)
-    // console.log(JSON.stringify(obj.response.eslintMessage));
     fetch ('https://laboratoria-la-dev-maia.firebaseapp.com/submissions', {
         method: 'POST',
-        body: JSON.stringify(obj)
+        body: JSON.stringify(obj),
     })
 }
 
 fs1.then((data) => {
-    obj.link=data;
+    obj.githubLink=data;
     fs2.then((data) => {
         obj.response.eslintMessage=JSON.parse(data);
         fs3.then((data) => {
