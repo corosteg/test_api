@@ -1,9 +1,14 @@
 #!/bin/bash
 
+# source ./obj.h
+
+# obj response
+
 return_code=0;
 
 echo starting linter
-eslint=$(./node_modules/.bin/eslint -f json *.js)
+# eslint=\"
+eslint=$(./node_modules/.bin/eslint -f json src/*.js)
 if [ $? -eq 1 ]
 then
 	echo eslint ko
@@ -24,37 +29,21 @@ else
 	echo unit-test ok
 	unit_test_return=0
 fi
-curl -i -d "eslintFail=$eslint_return" -d "eslintMessage=$eslint"\
-	-d "unitTestFail=$unit_test_return" -d "unitTestMessage=$unit_test"\
-	-d "repo_name=$(git config --get remote.origin.url)" \
-	"https://us-central1-github-hook-fe560.cloudfunctions.net/api"
-echo " "
-echo "                              !         !          "
-echo "                             ! !       ! !          "
-echo "                            ! . !     ! . !    "
-echo "                               ^^^^^^^^^ ^      "
-echo "                             ^             ^          "
-echo "                           ^  (0)       (0)  ^       "
-echo "                          ^        ""         ^       "
-echo "                         ^   ***************    ^     "
-echo "                       ^   *                 *   ^    "
-echo "                      ^   *   /\   /\   /\    *    ^   "
-echo "                     ^   *                     *    ^"
-echo "                    ^   *   /\   /\   /\   /\   *    ^"
-echo "                   ^   *                         *    ^"
-echo "                   ^  *                           *   ^"
-echo "                   ^  *                           *   ^"
-echo "                    ^ *                           *  ^  "
-echo "                     ^*                           * ^ "
-echo "                      ^ *                        * ^"
-echo "                      ^  *                      *  ^"
-echo "                        ^  *       ) (         * ^"
-echo "                            ^^^^^^^^ ^^^^^^^^^ "
-echo " "
-echo " "
-echo "                                         \"Totoro\" (from \"My Neighbor Totoro\")"
-echo ""
-echo ""
-echo ""
-
+echo $eslint > eslint.json
+echo $unit_test > unitTest.json
+#quote=$(echo \") 
+#git=$(git config --get remote.origin.url)
+#git_url="${quote}${git}${quote}"
+#response="${eslint}"
+#echo $response
+#unit_test_final=
+#echo $git_url
+#echo ${unit_test}
+#echo '{"link": '$git_url'}'
+#echo '{"link":'$git_url',"response":{"eslintFail":"'$eslint_return'","eslintMessage":'$eslint', "unitTest":'$unit_test'}'
+#echo '{"link":'$git_url',"response":'$eslint'}' 
+#curl -i -H "Accept: application/json" \
+#	-H "Content-Type:application/json"  \
+#	--data-urlencode '{"link":'$git_url',"response":'$eslint'}' \
+#	"https://us-central1-github-hook-fe560.cloudfunctions.net/api2"
 exit $return_code;
