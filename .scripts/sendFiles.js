@@ -49,7 +49,7 @@ let fs5 = new Promise ((resolve) => {fs.readFile('./tmp/unitTestFail.txt', 'utf-
 const sendFilesToDB = (obj) => {
     console.log(obj.response.eslintMessage)
     // console.log(JSON.stringify(obj.response.eslintMessage));
-    fetch ('https://us-central1-github-hook-fe560.cloudfunctions.net/api2', {
+    fetch ('https://laboratoria-la-dev-maia.firebaseapp.com/submissions', {
         method: 'POST',
         body: JSON.stringify(obj)
     })
